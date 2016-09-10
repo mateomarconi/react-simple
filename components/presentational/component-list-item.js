@@ -1,7 +1,7 @@
 const ComponentsListItem = React.createClass({
 	render: function() {
 		return (
-			<li>1</li>
+			<li key={this.props.component.id}>{this.props.component.text}</li>
 		)
 	}
 })
