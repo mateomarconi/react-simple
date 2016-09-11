@@ -1,12 +1,11 @@
 const SearchResultList = React.createClass({
 	render: function() {
-		let components = []
-		this.props.components.forEach( component => {
-			if (component.text.search(this.props.searchText) != -1 && this.props.searchText.length > 0)
-				components.push(<li key={component.id}>{component.text}</li>)
-		})
+		let list = []
+		this.props.list.forEach( item => 
+			list.push(<li key={item.id}>{item.text}</li>)
+		)
 		return (
-			<ul>{ components }</ul>
+			<ul>{ list }</ul>
 		)
 	}
 })

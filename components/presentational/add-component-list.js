@@ -9,13 +9,10 @@ const AddComponentsList = React.createClass({
 				{id: 3, text: 'input#number', 	added: false},
 				{id: 4, text: 'label', 			added: false}
 			],
-			searchText: '',
 			newItem: {id: null, text: null, added: true}
 		}
 	},
-	handleUserInput: function(searchText) {
-		this.setState({ searchText: searchText })
-	},
+	
 	render: function() {
 		return (
 			<div>
@@ -24,8 +21,6 @@ const AddComponentsList = React.createClass({
 				<ComponentsList list={ this.state.all }/>
 				<SearchAutocomplete 
 					list={ this.state.all }
-					searchText={ this.state.searchText }
-					onUserInput={this.handleUserInput}
 				/>
 			</div>
 		)
