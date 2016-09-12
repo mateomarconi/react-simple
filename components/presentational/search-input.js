@@ -3,7 +3,7 @@ const SearchInput = React.createClass({
 		this.props.onUserInput( this.refs.searchTextInput.value )
 	},
 	handleKeys: function(e) {
-		this.props.onUserPress(e.keyCode)
+		this.props.onUserKey(e.keyCode)
 	},
 	render: function() {
 		return (

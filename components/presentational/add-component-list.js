@@ -4,23 +4,34 @@ const AddComponentsList = React.createClass({
 	getInitialState: function() {
 		return {
 			all : [
-				{id: 1, text: 'input', 			added: false},
-				{id: 2, text: 'input#text', 	added: false},
-				{id: 3, text: 'input#number', 	added: false},
-				{id: 4, text: 'label', 			added: false}
+				{ id: 1, text: 'input' },
+				{ id: 2, text: 'input#text' },
+				{ id: 3, text: 'input#number' },
+				{ id: 4, text: 'label' }
 			],
-			newItem: {id: null, text: null, added: true}
+			child: []
 		}
 	},
-	
+	addComponent: function(text) {
+		const all = this.state.all.filter( item => item.text == text )
+		const newList = this.state.child
+		
+		if (all.length == 0)
+			newList.push({ id: this.state.all.length, text: text })
+		else 
+			newList.push(all[0])
+		
+		this.setState({ child: newList })
+	},
 	render: function() {
 		return (
 			<div>
 				<h3>Components</h3>
 
-				<ComponentsList list={ this.state.all }/>
+				<ComponentsList list={ this.state.child }/>
 				<SearchAutocomplete 
 					list={ this.state.all }
+					addComponent={ this.addComponent }
 				/>
 			</div>
 		)
@@ -28,3 +39,5 @@ const AddComponentsList = React.createClass({
 })
 
 window.App.AddComponentsList = AddComponentsList
+
+// SearchAutocomplete -> SearchCreate
