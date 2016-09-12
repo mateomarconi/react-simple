@@ -8,7 +8,7 @@ const SearchAutocomplete = React.createClass({
 		}
 	},
 	handleUserKeys: function(key) {
-		if (this.state.filterList.length == 0) return;
+		//if (this.state.filterList.length == 0 && this.state.searchText.length == 0) return;
 		switch(key) {
 			case 13:
 				this.submitResult()
@@ -35,9 +35,11 @@ const SearchAutocomplete = React.createClass({
 		else
 			result = selected[0].text
 		this.props.addComponent(result)
+		this.setState({ filterList: [], searchText: '' })
 
 	},
 	selectNext: function(direction) {
+		if (this.state.filterList.length == 0) return;
 		let tmp = this.state.filterList
 
 		if (tmp.filter( item => item.active).length == 0){

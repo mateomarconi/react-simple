@@ -16,8 +16,9 @@ const AddComponentsList = React.createClass({
 		const all = this.state.all.filter( item => item.text == text )
 		const newList = this.state.child
 		
-		if (all.length == 0)
-			newList.push({ id: this.state.all.length, text: text })
+		if (all.length == 0){
+			newList.push({ id: this.state.child.length, text: text })
+		}
 		else 
 			newList.push(all[0])
 		
