@@ -9,9 +9,12 @@ const CrudItemList = React.createClass({
 		console.log('CrudItemList', 'updateList', item)
 		this.props.updateList(list);
 	},
+	isNewItem: function(item) {
+		console.log(this.props.list.contains(item))
+	},
 	addItem: function(item) {
 		console.log('CrudItemList', 'addItem', item)
-		if (isNew(item, list))
+		//if (isNewItem(item, list))
 			// updateList with new item
 			// updateChilds with new item
 		//else

@@ -1,7 +1,16 @@
+const { ItemInlineEditor } = window.Dumb
+
+/*
+	props: list - update
+*/
 const EditableList = React.createClass({
 	render:function() {
 		return (
-			<div>EditableList</div>
+			<ul>
+				{this.props.list.map( item => 
+					<ItemInlineEditor item={item} />
+				)}
+			</ul>
 		)
 	}
 })
