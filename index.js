@@ -1,4 +1,4 @@
-const { LayoutContainer } = window.App
+const { HomePage } = window.Pages
 
 
-ReactDOM.render(<LayoutContainer />, document.getElementById("app"))
+ReactDOM.render(<HomePage/>, document.getElementById("app"))

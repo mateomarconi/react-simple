@@ -3,27 +3,33 @@
   <head>
     <meta charset="utf-8" />
     <title>React Simple</title>
-    <!--script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser.js"></script>
-    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.8.34/browser-polyfill.js"></script>
-    <script type="text/javascript" src="https://fb.me/react-0.14.7.js"></script>
-    <script type="text/javascript" src="https://fb.me/react-dom-0.14.7.js"></script-->
     <script type="text/javascript" src="./libs/browser.js"></script>
     <script type="text/javascript" src="./libs/browser-polyfill.js"></script>
     <script type="text/javascript" src="./libs/react.js"></script>
     <script type="text/javascript" src="./libs/react-dom.js"></script>
     <script type="text/javascript">
       window.App = {}
+      window.Dumb = {}
+      window.Smart = {}
+      window.Pages = {}
     </script>
   </head>
   <body>
     <div id="app"></div>
     <script type="text/babel" src="./components/presentational/component-list-item.js"></script>
     <script type="text/babel" src="./components/presentational/search-input.js"></script>
+    <script type="text/babel" src="./components/containers/search-create.js"></script>
     <script type="text/babel" src="./components/presentational/search-result-list.js"></script>
     <script type="text/babel" src="./components/presentational/component-list.js"></script>
     <script type="text/babel" src="./components/presentational/search-autocomplete.js"></script>
     <script type="text/babel" src="./components/presentational/add-component-list.js"></script>
-    <script type="text/babel" src="./components/app.js"></script>
+    
+    <script type="text/babel" src="./components/containers/editable-list.js"></script>
+    <script type="text/babel" src="./components/containers/search-new.js"></script>
+    <script type="text/babel" src="./components/presentational/subtitle.js"></script>
+    <script type="text/babel" src="./components/containers/crud-item-list.js"></script>
+    <script type="text/babel" src="./components/pages/home.js"></script>
+    <!--script type="text/babel" src="./components/app.js"></script-->
     <script type="text/babel" src="./index.js"></script>
   </body>
 </html>
