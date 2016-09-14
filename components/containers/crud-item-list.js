@@ -10,15 +10,20 @@ const CrudItemList = React.createClass({
 		this.props.updateList(list);
 	},
 	isNewItem: function(item) {
-		console.log(this.props.list.contains(item))
+		return this.props.list.filter( i => i.name == item.name).length == 0
 	},
 	addItem: function(item) {
-		console.log('CrudItemList', 'addItem', item)
-		//if (isNewItem(item, list))
-			// updateList with new item
-			// updateChilds with new item
-		//else
-			// updateChilds with new item
+		console.log(this.props.childList.length)
+		item.id = this.props.childList.length + 1
+		this.props.updateChilds(item)
+
+/*
+		if (this.isNewItem(item)){
+			let tmp = this.props.list
+			item.id = tmp.length + 1
+			tmp.push(item)
+			this.props.updateList(tmp)
+		}*/
 	},
 	render: function() {
 		return (

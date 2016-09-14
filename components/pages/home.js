@@ -14,8 +14,10 @@ const HomePage = React.createClass({
 			childTypographys: []
 		}
 	},
-	updateComponentsList: function(components) {
-		this.setState({ componentList: components})
+	updateComponentsList: function(component) {
+		let tmp = this.state.componentList
+		tmp.push(component)
+		this.setState({ componentList: tmp})
 	},
 	updateTypographyList: function(typographys) {
 		this.setState({ typographyList: typographys})

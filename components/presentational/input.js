@@ -1,6 +1,5 @@
 const Input = React.createClass({
 	handleChange: function() {
-		console.log(this.refs.searchTextInput.value)
 		this.props.onUserInput( this.refs.searchTextInput.value )
 	},
 	handleKeys: function(e) {

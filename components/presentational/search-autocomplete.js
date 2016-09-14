@@ -59,7 +59,7 @@ const SearchAutocomplete = React.createClass({
 	},
 	fillWithSelected: function() {
 		if (this.state.filterList.length == 0) return;
-		let selectedText = this.state.filterList.filter( item => item.active )[0].text
+		let selectedText = this.state.filterList.filter( item => item.active )[0].name
 		this.setState({ searchText: selectedText })
 	},
 	filterList: function(searchText) {

@@ -1,7 +1,7 @@
 const ItemInlineEditor = React.createClass({
 	render: function() {
 		return (
-			<li key={this.props.item.id}>{this.props.item.name}</li>
+			<li>{this.props.value}</li>
 		)
 	}
 })

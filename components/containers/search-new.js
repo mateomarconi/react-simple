@@ -14,8 +14,8 @@ const SearchNew = React.createClass({
 			result = this.state.searchText
 		else
 			result = selected[0].text
-		this.addComponent(result)
 		this.setState({ filterList: [], searchText: '' })
+		this.addComponent(result)
 
 	},
 	addComponent: function(text) {
@@ -23,7 +23,7 @@ const SearchNew = React.createClass({
 		let newItem = null
 		
 		if (all.length == 0){
-			newItem = { id: null, text: text }
+			newItem = { id: null, name: text }
 		}
 		else 
 			newItem = all[0]
@@ -51,7 +51,7 @@ const SearchNew = React.createClass({
 	},
 	fillWithSelected: function() {
 		if (this.state.filterList.length == 0) return;
-		let selectedText = this.state.filterList.filter( item => item.active )[0].text
+		let selectedText = this.state.filterList.filter( item => item.active )[0].name
 		this.setState({ searchText: selectedText })
 	},
 	handleUserInput: function(searchText) {

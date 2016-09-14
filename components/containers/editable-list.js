@@ -8,7 +8,7 @@ const EditableList = React.createClass({
 		return (
 			<ul>
 				{this.props.list.map( item => 
-					<ItemInlineEditor item={item} />
+					<ItemInlineEditor key={item.id} value={item.name} />
 				)}
 			</ul>
 		)
