@@ -12,10 +12,36 @@
       window.Dumb = {}
       window.Smart = {}
       window.Pages = {}
+      window.Layout = {}
     </script>
+
+    <style type="text/css">
+      html,
+      body {
+        height: 100%;
+        width: 100%;
+      }
+      * {
+        padding: 0;
+        margin: 0;
+        box-sizing: border-box;
+      }
+      .react-layout-components--box {
+        display: -webkit-box;
+        display: -moz-box;
+        display: -ms-flexbox;
+        display: -webkit-flex;
+        display: flex;
+      }
+    </style>
   </head>
   <body>
     <div id="app"></div>
+
+    <!-- Layout -->
+    <script type="text/babel" src="./components/layout/Container.js"></script>
+    <script type="text/babel" src="./components/layout/Box.js"></script>
+
     <script type="text/babel" src="./components/presentational/dropdown-list.js"></script>
     <script type="text/babel" src="./components/presentational/item-inline-editor.js"></script>
     <script type="text/babel" src="./components/presentational/input.js"></script>

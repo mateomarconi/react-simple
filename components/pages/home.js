@@ -1,4 +1,5 @@
 const { CrudItemList } = window.Smart
+const { Container, Box } = window.Layout
 
 const HomePage = React.createClass({
 	getInitialState: function() {
@@ -36,7 +37,7 @@ const HomePage = React.createClass({
 		this.setState({ childComponents: [...this.state.childComponents, tmp] })
 	},
 	updateChilds: function(childs) {
-		this.setState({ childComponents: components})
+		this.setState({ childComponents: childs})
 	},
 
 
@@ -61,30 +62,35 @@ const HomePage = React.createClass({
 
 	render: function() {
 		return (
-			<div>
-				<CrudItemList
-					title="Components"
-					
-					searchList	={ this.state.components }
-					addNewSearch={ this.addComponent }
+			<Box>
+				<Box flex="0 0 20%">
+					<h1>Left</h1>
+					<CrudItemList title="Components"
+						searchList	={ this.state.components }
+						addNewSearch={ this.addComponent }
+						childList	={ this.state.childComponents }
+						addNewChild	={ this.addNewComponent }
+						updateChilds={ this.updateChilds }
+					/>
 
-					childList	={ this.state.childComponents }
-					addNewChild	={ this.addNewComponent }
-					updateChilds={ this.updateChilds }
-				/>
+					<CrudItemList title="Typography"
+						searchList	={ this.state.typograhies }
+						addNewSearch={ this.addTypography }
+						childList	={ this.state.childTypographies }
+						addNewChild	={ this.addNewTypography }
+						updateChilds={ this.updateTypographies }								
+					/>
 
-				<CrudItemList
-					title="Typography"
-					
-					searchList	={ this.state.typograhies }
-					addNewSearch={ this.addTypography }
-					
-					childList	={ this.state.childTypographies }
-					addNewChild	={ this.addNewTypography }
-					updateChilds={ this.updateTypographies }								
-				/>
+				</Box>
 
-			</div>
+				<Box>
+					<h1>Middle</h1>
+				</Box>
+
+				<Box flex="0 0 20%">
+					<h1>Right</h1>
+				</Box>
+			</Box>
 		)
 	}
 })

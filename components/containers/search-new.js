@@ -15,25 +15,12 @@ const SearchNew = React.createClass({
 		else
 			result = selected[0]
 		this.setState({ filterList: [], searchText: '' })
-		//this.addComponent(result)
 		this.props.add( result )
 
 	},
-	addComponent: function(text) {
-		const all = this.state.filterList.filter( item => item.text == text )
-		let newItem = null
-		
-		if (all.length == 0){
-			newItem = { id: null, name: text }
-		}
-		else 
-			newItem = all[0]
-		
-		//this.props.add( newItem )
-	},
 	selectNext: function(direction) {
 		if (this.state.filterList.length == 0) return;
-		let tmp = this.state.filterList
+		let tmp = [...this.state.filterList]
 
 		if (tmp.filter( item => item.active).length == 0){
 			let item = direction == 'up' ? tmp.length - 1 : 0
