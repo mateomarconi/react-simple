@@ -3,48 +3,85 @@ const { CrudItemList } = window.Smart
 const HomePage = React.createClass({
 	getInitialState: function() {
 		return {
-			componentList: [
+			components: [
 				{id: 1, name: 'CrudItemList'},
 				{id: 2, name: 'Subtitle'},
 				{id: 3, name: 'EditableList'},
 				{id: 4, name: 'SearchNew'}
 			],
-			typographyList: [],
+			typograhies: [
+				{id: 1, name: 'Roboto-header'},
+				{id: 2, name: 'Roboto-footer'},
+				{id: 3, name: 'Montserrat-titles'},
+				{id: 4, name: 'Montserrat-components'}
+			],
 			childComponents: [],
-			childTypographys: []
+			childTypographies: []
 		}
 	},
-	updateComponentsList: function(component) {
-		let tmp = this.state.componentList
-		tmp.push(component)
-		this.setState({ componentList: tmp})
+
+
+	addComponent: function(component) {
+		const tmp = {
+			id: this.state.components.length + 1,
+			name: component.name
+		}
+		this.setState({ components: [...this.state.components, tmp] })
 	},
-	updateTypographyList: function(typographys) {
-		this.setState({ typographyList: typographys})
+	addNewComponent: function(child) {
+		const tmp = {
+			id: this.state.childComponents.length + 1,
+			name: child.name
+		}
+		this.setState({ childComponents: [...this.state.childComponents, tmp] })
 	},
-	updateChildComponents: function(components) {
+	updateChilds: function(childs) {
 		this.setState({ childComponents: components})
 	},
-	updateChildTypography: function(typographys) {
-		this.setState({ childTypographys: typographys})
+
+
+	addTypography: function(typography) {
+		const tmp = {
+			id: this.state.typograhies.length + 1,
+			name: typography.name
+		}
+		this.setState({ typograhies: [...this.state.typograhies, tmp] })
 	},
+	addNewTypography: function(typography) {
+		const tmp = {
+			id: this.state.childTypographies.length + 1,
+			name: typography.name
+		}
+		this.setState({ childTypographies: [...this.state.childTypographies, tmp] })
+	},
+	updateTypographies: function(typographies) {
+		this.setState({ childTypographies: typographies})
+	},
+
+
 	render: function() {
 		return (
 			<div>
 				<CrudItemList
 					title="Components"
-					list={this.state.componentList}
-					updateList={this.updateComponentsList}
-					childList={this.state.childComponents}
-					updateChilds={this.updateChildComponents}
+					
+					searchList	={ this.state.components }
+					addNewSearch={ this.addComponent }
+
+					childList	={ this.state.childComponents }
+					addNewChild	={ this.addNewComponent }
+					updateChilds={ this.updateChilds }
 				/>
 
 				<CrudItemList
 					title="Typography"
-					list={this.state.typographyList}
-					updateList={this.updateTypographyList}
-					childList={this.state.childTypographys}
-					updateChilds={this.updateChildTypography}								
+					
+					searchList	={ this.state.typograhies }
+					addNewSearch={ this.addTypography }
+					
+					childList	={ this.state.childTypographies }
+					addNewChild	={ this.addNewTypography }
+					updateChilds={ this.updateTypographies }								
 				/>
 
 			</div>

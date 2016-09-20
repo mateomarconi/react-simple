@@ -7,15 +7,16 @@ const SearchNew = React.createClass({
 			searchText: ''
 		}
 	},
-	submitResult: function() {
+	submit: function() {
 		const selected = this.state.filterList.filter( item => item.active)
 		let result = null
 		if (selected.length == 0)
-			result = this.state.searchText
+			result = {id: null, name: this.state.searchText}
 		else
-			result = selected[0].text
+			result = selected[0]
 		this.setState({ filterList: [], searchText: '' })
-		this.addComponent(result)
+		//this.addComponent(result)
+		this.props.add( result )
 
 	},
 	addComponent: function(text) {
@@ -28,7 +29,7 @@ const SearchNew = React.createClass({
 		else 
 			newItem = all[0]
 		
-		this.props.add( newItem )
+		//this.props.add( newItem )
 	},
 	selectNext: function(direction) {
 		if (this.state.filterList.length == 0) return;
@@ -74,7 +75,7 @@ const SearchNew = React.createClass({
 	handleUserKeys: function(key) {
 		switch(key) {
 			case 13:
-				this.submitResult()
+				this.submit()
 				break
 			case 27:
 				this.setState({ filterList: [] })
