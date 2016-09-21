@@ -1,9 +1,26 @@
 const Box = React.createClass({
 	render: function() {
-		console.log(this.props)
-		const childs = React.Children.map(this.props.children, (child) => React.cloneElement(child))
+
+		const props = this.props
+		const styles = {}
+		const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
+		console.log(props)
+
+		if (props.column)
+			styles.flexDirection = 'column'
+
+		if (props.fit){
+			styles.height = '100%'
+			styles.width = '100%'
+		}
+
+		flexProps.forEach( prop => {
+			if (props.hasOwnProperty(prop))
+				styles[prop] = props[prop]
+		})
+
 		return (
-			<div className="react-layout-components--box">{ childs }</div>
+			<div className="react-layout-components--box" style={ {...styles, ...props.style} }>{ props.children }</div>
 		)
 	}
 })

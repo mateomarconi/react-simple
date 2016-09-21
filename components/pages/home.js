@@ -61,9 +61,16 @@ const HomePage = React.createClass({
 
 
 	render: function() {
+
+		const styles = {
+			middleColumn: {
+				border: '1px solid black'
+			}
+		}
+
 		return (
-			<Box>
-				<Box flex="0 0 20%">
+			<Box fit>
+				<Box column flex="0 0 20%">
 					<h1>Left</h1>
 					<CrudItemList title="Components"
 						searchList	={ this.state.components }
@@ -83,7 +90,7 @@ const HomePage = React.createClass({
 
 				</Box>
 
-				<Box>
+				<Box flex="1 1 auto" style={ styles.middleColumn }>
 					<h1>Middle</h1>
 				</Box>
 
