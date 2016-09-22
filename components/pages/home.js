@@ -40,10 +40,10 @@ const HomePage = React.createClass({
 		this.setState({ childComponents: [...this.state.childComponents, tmp] })
 	},
 	updateChilds: function(childs) {
-		this.setState({ childComponents: childs})
+		this.setState({ childComponents: childs })
 	},
 	selectComponent: function(item) {
-		console.log(item)
+		this.setState({ selectedComponent: item })
 	},
 
 
@@ -62,10 +62,10 @@ const HomePage = React.createClass({
 		this.setState({ childTypographies: [...this.state.childTypographies, tmp] })
 	},
 	updateTypographies: function(typographies) {
-		this.setState({ childTypographies: typographies})
+		this.setState({ childTypographies: typographies })
 	},
 	selectTypography: function(item) {
-		this.setState({ selected: item})
+		this.setState({ selectedTypography: item })
 	},
 
 
@@ -111,7 +111,9 @@ const HomePage = React.createClass({
 				<Box column flex="0 0 20%">
 					<h1>Right</h1>
 
-					<TypographyProperties typography={this.state.selected}/>
+					{ this.state.selectedTypography && 
+						<TypographyProperties typography={this.state.selectedTypography}/>
+					}
 				</Box>
 			</Box>
 		)
