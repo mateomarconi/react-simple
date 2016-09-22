@@ -1,4 +1,4 @@
-const { CrudItemList } = window.Smart
+const { CrudItemList, TypographyProperties } = window.Smart
 const { Container, Box } = window.Layout
 
 const HomePage = React.createClass({
@@ -10,14 +10,17 @@ const HomePage = React.createClass({
 				{id: 3, name: 'EditableList'},
 				{id: 4, name: 'SearchNew'}
 			],
+			childComponents: [],
+			selectedComponent: null,
+
 			typograhies: [
 				{id: 1, name: 'Roboto-header'},
 				{id: 2, name: 'Roboto-footer'},
 				{id: 3, name: 'Montserrat-titles'},
 				{id: 4, name: 'Montserrat-components'}
 			],
-			childComponents: [],
-			childTypographies: []
+			childTypographies: [],
+			selectedTypography: null
 		}
 	},
 
@@ -39,6 +42,9 @@ const HomePage = React.createClass({
 	updateChilds: function(childs) {
 		this.setState({ childComponents: childs})
 	},
+	selectComponent: function(item) {
+		console.log(item)
+	},
 
 
 	addTypography: function(typography) {
@@ -58,6 +64,9 @@ const HomePage = React.createClass({
 	updateTypographies: function(typographies) {
 		this.setState({ childTypographies: typographies})
 	},
+	selectTypography: function(item) {
+		this.setState({ selected: item})
+	},
 
 
 	render: function() {
@@ -72,20 +81,25 @@ const HomePage = React.createClass({
 			<Box fit>
 				<Box column flex="0 0 20%">
 					<h1>Left</h1>
-					<CrudItemList title="Components"
+
+					<CrudItemList 
+						title 		= "Components"
 						searchList	={ this.state.components }
 						addNewSearch={ this.addComponent }
 						childList	={ this.state.childComponents }
 						addNewChild	={ this.addNewComponent }
 						updateChilds={ this.updateChilds }
+						select 		={ this.selectComponent }
 					/>
 
-					<CrudItemList title="Typography"
+					<CrudItemList 
+						title 		= "Typography"
 						searchList	={ this.state.typograhies }
 						addNewSearch={ this.addTypography }
 						childList	={ this.state.childTypographies }
 						addNewChild	={ this.addNewTypography }
-						updateChilds={ this.updateTypographies }								
+						updateChilds={ this.updateTypographies }
+						select 		={ this.selectTypography }			
 					/>
 
 				</Box>
@@ -94,8 +108,10 @@ const HomePage = React.createClass({
 					<h1>Middle</h1>
 				</Box>
 
-				<Box flex="0 0 20%">
+				<Box column flex="0 0 20%">
 					<h1>Right</h1>
+
+					<TypographyProperties typography={this.state.selected}/>
 				</Box>
 			</Box>
 		)

@@ -13,14 +13,16 @@ const CrudItemList = React.createClass({
 	render: function() {
 		return (
 			<div>
-				<Subtitle
-					value={this.props.title}/>
+				<Subtitle value={ this.props.title }/>
+
 				<EditableList
-					list={this.props.childList}
-					update={this.props.updateChilds}/>
+					list 	={ this.props.childList }
+					update 	={ this.props.updateChilds }
+					select 	={ this.props.select }/>
+				
 				<SearchNew
-					list={this.props.searchList}
-					add={this.addItem}
+					list 	={ this.props.searchList }
+					add 	={ this.addItem }
 				/>
 			</div>
 		)

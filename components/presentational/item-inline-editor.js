@@ -1,7 +1,7 @@
 const ItemInlineEditor = React.createClass({
 	render: function() {
 		return (
-			<li>{this.props.value}</li>
+			<li onClick={ this.props.userClick } >{ this.props.value }</li>
 		)
 	}
 })

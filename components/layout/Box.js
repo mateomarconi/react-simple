@@ -4,7 +4,6 @@ const Box = React.createClass({
 		const props = this.props
 		const styles = {}
 		const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
-		console.log(props)
 
 		if (props.column)
 			styles.flexDirection = 'column'
