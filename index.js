@@ -1,4 +1,4 @@
 const { HomePage } = window.Pages
 
 
-ReactDOM.render(<HomePage/>, document.body)
+ReactDOM.render(<HomePage/>, document.getElementById('app'))

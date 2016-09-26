@@ -17,7 +17,7 @@
 
     <style type="text/css">
       html,
-      body {
+      body, #app {
         height: 100%;
         width: 100%;
       }
@@ -36,19 +36,22 @@
     </style>
   </head>
   <body>
-
+    
+    <div id="app"></div>
+    
     <!-- Layout -->
     <script type="text/babel" src="./components/layout/Container.js"></script>
     <script type="text/babel" src="./components/layout/Box.js"></script>
 
     <!-- Presentational -->
     <script type="text/babel" src="./components/presentational/label-number.js"></script>
-    <script type="text/babel" src="./components/presentational/dropdown-list.js"></script>
+    <script type="text/babel" src="./components/presentational/filter-list.js"></script>
     <script type="text/babel" src="./components/presentational/item-inline-editor.js"></script>
     <script type="text/babel" src="./components/presentational/input.js"></script>
     <script type="text/babel" src="./components/presentational/subtitle.js"></script>
 
     <!-- Containers -->
+    <script type="text/babel" src="./components/containers/search-select.js"></script>
     <script type="text/babel" src="./components/containers/label-search-input.js"></script>
     <script type="text/babel" src="./components/containers/editable-list.js"></script>
     <script type="text/babel" src="./components/containers/typography-properties.js"></script>

@@ -1,12 +1,12 @@
 const { Input, FilterList } = window.Dumb
 
-const SearchNew = React.createClass({
+const SearchSelect = React.createClass({
 	getInitialState: function() {
 		return { 
 			filterList: [],
 			searchText: ''
 		}
-	},
+	},/*
 	submit: function() {
 		const selected = this.state.filterList.filter( item => item.active)
 		let result = null
@@ -77,7 +77,7 @@ const SearchNew = React.createClass({
 				this.selectNext('down')
 				break
 		}
-	},
+	},*/
 	render: function() {
 		return (
 			<div>
@@ -88,10 +88,10 @@ const SearchNew = React.createClass({
 
 				<FilterList 
 					searchText={this.state.searchText}
-					list={this.state.filterList}/>
+					list={this.state.list}/>
 			</div>
 		)
 	}
 })
 
-window.Smart.SearchNew = SearchNew
+window.Smart.SearchSelect = SearchSelect
