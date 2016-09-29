@@ -1,4 +1,4 @@
-const { Input, FilterList } = window.Dumb
+const { Input, List } = window.Dumb
 
 const SearchSelect = React.createClass({
 	getInitialState: function() {
@@ -79,16 +79,19 @@ const SearchSelect = React.createClass({
 		}
 	},*/
 	render: function() {
+		console.log(this.props.list)
 		return (
 			<div>
+				<button>select</button>
 				<Input
 					value={this.state.searchText}
 					onUserInput={this.handleUserInput}
 					onUserKey={this.handleUserKeys}/>
 
-				<FilterList 
-					searchText={this.state.searchText}
-					list={this.state.list}/>
+				<List
+					list2={this.state.filterList}
+					list={this.state.filterList}
+					/>
 			</div>
 		)
 	}
