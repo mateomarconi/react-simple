@@ -1,17 +1,21 @@
-<<<<<<< HEAD
 const { Button, Input, List } = window.Dumb
-=======
-const { Input, List } = window.Dumb
->>>>>>> c0ec29ff9fe3763064a0340aa8d8707b657fad05
 
 const SearchSelect = React.createClass({
 	getInitialState: function() {
 		return { 
 			selected: 'select...',
-			filterList: this.props.list,
+			filterList: this.formatList(this.props.list),
 			searchText: '',
 			visible: false
 		}
+	},
+	formatList: function(list) {
+		return list.map( item => {
+			return {
+				value: item,
+				active:  false
+			}
+		})
 	},/*
 	submit: function() {
 		const selected = this.state.filterList.filter( item => item.active)
@@ -96,8 +100,17 @@ const SearchSelect = React.createClass({
 	toggleVisible: function() {
 		this.setState({ visible: !this.state.visible })
 	},
+	active: function(selected) {
+		const newList = this.state.filterList.map( item => {
+			(item.value == selected) ? item.active = true : item.active = false
+			return item
+		})
+		this.setState({ filterList: newList })
+	},
+	select: function(selected) {
+		this.setState({ selected: selected, visible: false})
+	},
 	render: function() {
-		console.log(this.props.list)
 		return (
 			<div>
 				<Button
@@ -116,6 +129,8 @@ const SearchSelect = React.createClass({
 					<List 
 						searchText	={ this.state.searchText }
 						items		={ this.state.filterList }
+						active 		={ this.active }
+						select 		={ this.select }
 						/>
 				)}
 			</div>
