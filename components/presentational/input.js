@@ -1,4 +1,9 @@
 const Input = React.createClass({
+	componentDidMount: function() {
+		console.log('Imput: componentDidMount')
+		if (this.props.focusOnMount)
+			this.refs.searchTextInput.focus()
+	},
 	handleChange: function() {
 		this.props.onUserInput( this.refs.searchTextInput.value )
 	},
@@ -8,12 +13,12 @@ const Input = React.createClass({
 	render: function() {
 		return (
 			<input 
-				type="text"
-				placeholder="search"
-				value={this.props.value}
-				ref="searchTextInput"
-				onChange={this.handleChange}
-				onKeyDown={this.handleKeys}
+				type		="text"
+				placeholder	="search"
+				value		={ this.props.value }
+				ref 		="searchTextInput"
+				onChange	={ this.handleChange }
+				onKeyDown	={ this.handleKeys }
 			/>
 		)
 	}

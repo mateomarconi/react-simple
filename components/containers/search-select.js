@@ -10,12 +10,14 @@ const SearchSelect = React.createClass({
 		}
 	},
 	formatList: function(list) {
-		return list.map( item => {
+		const tmp = list.map( item => { 
 			return {
 				value: item,
 				active:  false
 			}
 		})
+		tmp[0].active = true
+		return tmp
 	},/*
 	submit: function() {
 		const selected = this.state.filterList.filter( item => item.active)
@@ -82,16 +84,19 @@ const SearchSelect = React.createClass({
 		}
 	},*/
 	filterList: function(searchText) {
-		return this.props.list.filter( item => {
-			if ( item.name.search(searchText) != -1 && searchText.length > 0 )
+		console.log(searchText)
+		return this.state.filterList.filter( item => {
+			if ( item.value.search(searchText) != -1 && searchText.length > 0 )
 				return true;
 		}).map( item => {
-			item.active = item.name == searchText ? true : false
+			item.active = item.value == searchText ? true : false
 			return item
 		})
 	},
 	handleUserInput: function(searchText) {
 		let filterList = this.filterList(searchText)
+		if (filterList[0])
+			filterList[0].active = true
 		this.setState({
 			searchText: searchText,
 			filterList: filterList
@@ -99,6 +104,8 @@ const SearchSelect = React.createClass({
 	},
 	toggleVisible: function() {
 		this.setState({ visible: !this.state.visible })
+		if (!this.state.visible)
+			console.log(this.refs)
 	},
 	active: function(selected) {
 		const newList = this.state.filterList.map( item => {
@@ -109,6 +116,9 @@ const SearchSelect = React.createClass({
 	},
 	select: function(selected) {
 		this.setState({ selected: selected, visible: false})
+	},
+	test: function(c) {
+		console.log(c)
 	},
 	render: function() {
 		return (
@@ -121,13 +131,15 @@ const SearchSelect = React.createClass({
 					<Input
 						value		={ this.state.searchText }
 						onUserInput	={ this.handleUserInput }
-						onUserKey	={ this.handleUserKeys }
+						//onUserKey	={ this.handleUserKeys }
+						//ref={this.test}
+						focusOnMount
 						/>
 				)}
 
 				{ this.state.visible && (
 					<List 
-						searchText	={ this.state.searchText }
+						//searchText	={ this.state.searchText }
 						items		={ this.state.filterList }
 						active 		={ this.active }
 						select 		={ this.select }
