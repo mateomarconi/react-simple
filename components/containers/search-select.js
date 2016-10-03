@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 const { Button, Input, List } = window.Dumb
+=======
+const { Input, List } = window.Dumb
+>>>>>>> c0ec29ff9fe3763064a0340aa8d8707b657fad05
 
 const SearchSelect = React.createClass({
 	getInitialState: function() {
@@ -93,6 +97,7 @@ const SearchSelect = React.createClass({
 		this.setState({ visible: !this.state.visible })
 	},
 	render: function() {
+		console.log(this.props.list)
 		return (
 			<div>
 				<Button

@@ -3,6 +3,7 @@ const selected = {
 }
 const FilterList = React.createClass({
 	render: function() {
+		console.log(this.props.list)
 		let list = []
 		this.props.list.forEach( item => 
 			list.push(<li key={item.id} style={ item.active ? selected : null }>{ item.name }</li>)
