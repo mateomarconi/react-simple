@@ -5,8 +5,6 @@ const { ItemInlineEditor } = window.Dumb
 */
 const EditableList = React.createClass({
 	handleSelect: function(item) {
-		console.log('userClick')
-		console.log(item)
 		this.props.select(item)
 	},
 	render:function() {

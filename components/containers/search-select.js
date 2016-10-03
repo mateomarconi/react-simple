@@ -1,10 +1,12 @@
-const { Input, FilterList } = window.Dumb
+const { Button, Input, List } = window.Dumb
 
 const SearchSelect = React.createClass({
 	getInitialState: function() {
 		return { 
-			filterList: [],
-			searchText: ''
+			selected: 'select...',
+			filterList: this.props.list,
+			searchText: '',
+			visible: false
 		}
 	},/*
 	submit: function() {
@@ -42,13 +44,6 @@ const SearchSelect = React.createClass({
 		let selectedText = this.state.filterList.filter( item => item.active )[0].name
 		this.setState({ searchText: selectedText })
 	},
-	handleUserInput: function(searchText) {
-		let filterList = this.filterList(searchText)
-		this.setState({
-			searchText: searchText,
-			filterList: filterList
-		})
-	},
 	// CONTAINS??
 	filterList: function(searchText) {
 		return this.props.list.filter( item => {
@@ -78,17 +73,46 @@ const SearchSelect = React.createClass({
 				break
 		}
 	},*/
+	filterList: function(searchText) {
+		return this.props.list.filter( item => {
+			if ( item.name.search(searchText) != -1 && searchText.length > 0 )
+				return true;
+		}).map( item => {
+			item.active = item.name == searchText ? true : false
+			return item
+		})
+	},
+	handleUserInput: function(searchText) {
+		let filterList = this.filterList(searchText)
+		this.setState({
+			searchText: searchText,
+			filterList: filterList
+		})
+	},
+	toggleVisible: function() {
+		this.setState({ visible: !this.state.visible })
+	},
 	render: function() {
 		return (
 			<div>
-				<Input
-					value={this.state.searchText}
-					onUserInput={this.handleUserInput}
-					onUserKey={this.handleUserKeys}/>
+				<Button
+					value	={ this.state.selected }
+					submit	={ this.toggleVisible } />
 
-				<FilterList 
-					searchText={this.state.searchText}
-					list={this.state.list}/>
+				{ this.state.visible && (
+					<Input
+						value		={ this.state.searchText }
+						onUserInput	={ this.handleUserInput }
+						onUserKey	={ this.handleUserKeys }
+						/>
+				)}
+
+				{ this.state.visible && (
+					<List 
+						searchText	={ this.state.searchText }
+						items		={ this.state.filterList }
+						/>
+				)}
 			</div>
 		)
 	}
