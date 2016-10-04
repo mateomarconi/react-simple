@@ -6,7 +6,7 @@ const List = React.createClass({
 	mouseOver: function(e) {
 		this.props.active(e.target.textContent)
 	},
-	click: function(e) {
+	mouseClick: function(e) {
 		this.props.select(e.target.textContent)
 	},
 	render: function() {
@@ -14,7 +14,7 @@ const List = React.createClass({
 			return (
 				<li key			={ this.props.items.indexOf(item) }
 					onMouseOver	={ this.mouseOver }
-					onClick		={ this.click }
+					onClick		={ this.mouseClick }
 					style		={ item.active ? selected : null }>
 					{ item.value }
 				</li>

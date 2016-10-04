@@ -13,10 +13,10 @@ const Input = React.createClass({
 	render: function() {
 		return (
 			<input 
-				type		="text"
-				placeholder	="search"
+				type		=  "text"
+				placeholder	=  "search"
 				value		={ this.props.value }
-				ref 		="searchTextInput"
+				ref 		=  "searchTextInput"
 				onChange	={ this.handleChange }
 				onKeyDown	={ this.handleKeys }
 			/>

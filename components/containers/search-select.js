@@ -4,19 +4,22 @@ const SearchSelect = React.createClass({
 	getInitialState: function() {
 		return { 
 			selected: 'select...',
-			filterList: this.formatList(this.props.list),
+			list: this.init(this.props.list),
 			searchText: '',
 			visible: false
 		}
 	},
-	formatList: function(list) {
+	toggleButton: function() {
+		this.setState({ visible: !this.state.visible })
+	},
+	init: function(list) {
 		const tmp = list.map( item => { 
 			return {
 				value: item,
 				active:  false
 			}
 		})
-		tmp[0].active = true
+		if (tmp) tmp[0].active = true
 		return tmp
 	},/*
 	submit: function() {
@@ -85,7 +88,7 @@ const SearchSelect = React.createClass({
 	},*/
 	filterList: function(searchText) {
 		console.log(searchText)
-		return this.state.filterList.filter( item => {
+		return this.state.list.filter( item => {
 			if ( item.value.search(searchText) != -1 && searchText.length > 0 )
 				return true;
 		}).map( item => {
@@ -93,26 +96,22 @@ const SearchSelect = React.createClass({
 			return item
 		})
 	},
-	handleUserInput: function(searchText) {
+	handleInput: function(searchText) {
 		let filterList = this.filterList(searchText)
 		if (filterList[0])
 			filterList[0].active = true
 		this.setState({
 			searchText: searchText,
-			filterList: filterList
+			list: filterList
 		})
 	},
-	toggleVisible: function() {
-		this.setState({ visible: !this.state.visible })
-		if (!this.state.visible)
-			console.log(this.refs)
-	},
+	
 	active: function(selected) {
-		const newList = this.state.filterList.map( item => {
+		const newList = this.state.list.map( item => {
 			(item.value == selected) ? item.active = true : item.active = false
 			return item
 		})
-		this.setState({ filterList: newList })
+		this.setState({ list: newList })
 	},
 	select: function(selected) {
 		this.setState({ selected: selected, visible: false})
@@ -125,22 +124,22 @@ const SearchSelect = React.createClass({
 			<div>
 				<Button
 					value	={ this.state.selected }
-					submit	={ this.toggleVisible } />
+					submit	={ this.toggleButton } />
 
 				{ this.state.visible && (
 					<Input
 						value		={ this.state.searchText }
-						onUserInput	={ this.handleUserInput }
-						//onUserKey	={ this.handleUserKeys }
-						//ref={this.test}
+						onUserInput	={ this.handleInput }
 						focusOnMount
+						onUserKey	={ this.handleUserKeys }
+						//ref={this.test}
 						/>
 				)}
 
 				{ this.state.visible && (
 					<List 
 						//searchText	={ this.state.searchText }
-						items		={ this.state.filterList }
+						items		={ this.state.list }
 						active 		={ this.active }
 						select 		={ this.select }
 						/>
