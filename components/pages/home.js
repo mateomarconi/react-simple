@@ -5,19 +5,19 @@ const HomePage = React.createClass({
 	getInitialState: function() {
 		return {
 			components: [
-				{id: 1, name: 'CrudItemList'},
-				{id: 2, name: 'Subtitle'},
-				{id: 3, name: 'EditableList'},
-				{id: 4, name: 'SearchNew'}
+				{id: 1, value: 'CrudItemList'},
+				{id: 2, value: 'Subtitle'},
+				{id: 3, value: 'EditableList'},
+				{id: 4, value: 'SearchNew'}
 			],
 			childComponents: [],
 			selectedComponent: null,
 
 			typograhies: [
-				{id: 1, name: 'Roboto-header'},
-				{id: 2, name: 'Roboto-footer'},
-				{id: 3, name: 'Montserrat-titles'},
-				{id: 4, name: 'Montserrat-components'}
+				{id: 1, value: 'Roboto-header'},
+				{id: 2, value: 'Roboto-footer'},
+				{id: 3, value: 'Montserrat-titles'},
+				{id: 4, value: 'Montserrat-components'}
 			],
 			childTypographies: [],
 			selectedTypography: null
@@ -28,14 +28,14 @@ const HomePage = React.createClass({
 	addComponent: function(component) {
 		const tmp = {
 			id: this.state.components.length + 1,
-			name: component.name
+			value: component.value
 		}
 		this.setState({ components: [...this.state.components, tmp] })
 	},
 	addNewComponent: function(child) {
 		const tmp = {
 			id: this.state.childComponents.length + 1,
-			name: child.name
+			value: child.value
 		}
 		this.setState({ childComponents: [...this.state.childComponents, tmp] })
 	},
@@ -50,14 +50,14 @@ const HomePage = React.createClass({
 	addTypography: function(typography) {
 		const tmp = {
 			id: this.state.typograhies.length + 1,
-			name: typography.name
+			value: typography.value
 		}
 		this.setState({ typograhies: [...this.state.typograhies, tmp] })
 	},
 	addNewTypography: function(typography) {
 		const tmp = {
 			id: this.state.childTypographies.length + 1,
-			name: typography.name
+			value: typography.value
 		}
 		this.setState({ childTypographies: [...this.state.childTypographies, tmp] })
 	},

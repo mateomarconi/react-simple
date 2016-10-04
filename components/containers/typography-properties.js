@@ -23,7 +23,7 @@ const TypographyProperties = React.createClass({
 
 		return (
 			<div>
-				<Subtitle value={ this.props.typography.name }/>
+				<Subtitle value={ this.props.typography.value }/>
 
 				<LabelSearchInput 
 					label="Family"

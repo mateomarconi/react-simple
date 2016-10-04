@@ -1,4 +1,4 @@
-const { Input, FilterList } = window.Dumb
+const { Input, FilterList, List } = window.Dumb
 
 const SearchNew = React.createClass({
 	getInitialState: function() {
@@ -11,7 +11,7 @@ const SearchNew = React.createClass({
 		const selected = this.state.filterList.filter( item => item.active)
 		let result = null
 		if (selected.length == 0)
-			result = {id: null, name: this.state.searchText}
+			result = {id: null, value: this.state.searchText}
 		else
 			result = selected[0]
 		this.setState({ filterList: [], searchText: '' })
@@ -39,7 +39,7 @@ const SearchNew = React.createClass({
 	},
 	fillWithSelected: function() {
 		if (this.state.filterList.length == 0) return;
-		let selectedText = this.state.filterList.filter( item => item.active )[0].name
+		let selectedText = this.state.filterList.filter( item => item.active )[0].value
 		this.setState({ searchText: selectedText })
 	},
 	handleUserInput: function(searchText) {
@@ -52,10 +52,10 @@ const SearchNew = React.createClass({
 	// CONTAINS??
 	filterList: function(searchText) {
 		return this.props.list.filter( item => {
-			if ( item.name.search(searchText) != -1 && searchText.length > 0 )
+			if ( item.value.search(searchText) != -1 && searchText.length > 0 )
 				return true;
 		}).map( item => {
-			item.active = item.name == searchText ? true : false
+			item.active = item.value == searchText ? true : false
 			return item
 		})
 	},
@@ -86,9 +86,12 @@ const SearchNew = React.createClass({
 					onUserInput={this.handleUserInput}
 					onUserKey={this.handleUserKeys}/>
 
-				<FilterList 
+				{/*<FilterList 
 					searchText={this.state.searchText}
-					list={this.state.filterList}/>
+					list={this.state.filterList}/>*/}
+
+				<List 
+					items={this.state.filterList}/>
 			</div>
 		)
 	}

@@ -11,7 +11,7 @@ const EditableList = React.createClass({
 		return (
 			<ul>
 				{this.props.list.map( item => 
-					<ItemInlineEditor key={ item.id } value={ item.name } userClick={ this.handleSelect.bind(null, item) }/>
+					<ItemInlineEditor key={ item.id } value={ item.value } userClick={ this.handleSelect.bind(null, item) }/>
 				)}
 			</ul>
 		)
