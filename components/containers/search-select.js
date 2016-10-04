@@ -21,7 +21,46 @@ const SearchSelect = React.createClass({
 		})
 		if (tmp) tmp[0].active = true
 		return tmp
-	},/*
+	},
+	handleUserKeys: function(key) {
+		switch(key) {
+			case 13:
+				this.select(this._getSelected())
+				break
+			case 27:
+				this.toggleButton()
+				break
+			case 38:
+				this._selectNext('up')
+				break
+			case 39:
+				this.fillWithSelected()
+				break
+			case 40:
+				this._selectNext('down')
+				break
+		}
+	},
+	_selectNext: function(direction) {
+		if (this.state.list.length == 0) return;
+		
+		let tmp = [...this.state.list]
+		let mod = direction == 'up' ? -1 : 1
+		let index = tmp.findIndex( item => item.active )
+
+		tmp[index].active = false
+		index += mod
+		if (index < 0) index = tmp.length -1
+		if (index == tmp.length) index = 0
+		tmp[index].active = true
+	
+		this.setState({ list: tmp })
+	},
+	_getSelected: function () {
+		let selected = this.state.list.filter( item => item.active)[0]
+		return selected ? selected.value : this.state.selected
+	},
+	/*
 	submit: function() {
 		const selected = this.state.filterList.filter( item => item.active)
 		let result = null
@@ -67,43 +106,19 @@ const SearchSelect = React.createClass({
 			return item
 		})
 	},
-	handleUserKeys: function(key) {
-		switch(key) {
-			case 13:
-				this.submit()
-				break
-			case 27:
-				this.setState({ filterList: [] })
-				break
-			case 38:
-				this.selectNext('up')
-				break
-			case 39:
-				this.fillWithSelected()
-				break
-			case 40:
-				this.selectNext('down')
-				break
-		}
-	},*/
-	filterList: function(searchText) {
-		console.log(searchText)
-		return this.state.list.filter( item => {
-			if ( item.value.search(searchText) != -1 && searchText.length > 0 )
-				return true;
-		}).map( item => {
-			item.active = item.value == searchText ? true : false
-			return item
+	*/
+	_filterList: function(searchText) {
+		return this.init(this.props.list)
+				.filter( item => item.value.search(searchText) != -1)
+				.map( item => {
+					item.active = item.value == searchText ? true : false
+					return item
 		})
 	},
 	handleInput: function(searchText) {
-		let filterList = this.filterList(searchText)
-		if (filterList[0])
-			filterList[0].active = true
-		this.setState({
-			searchText: searchText,
-			list: filterList
-		})
+		let filterList = this._filterList(searchText)
+		if (filterList[0]) filterList[0].active = true
+		this.setState({ searchText: searchText, list: filterList })
 	},
 	
 	active: function(selected) {
@@ -130,8 +145,8 @@ const SearchSelect = React.createClass({
 					<Input
 						value		={ this.state.searchText }
 						onUserInput	={ this.handleInput }
-						focusOnMount
 						onUserKey	={ this.handleUserKeys }
+						focusOnMount
 						//ref={this.test}
 						/>
 				)}
