@@ -1,4 +1,4 @@
-const { Input, FilterList, List } = window.Dumb
+const { Input, List } = window.Dumb
 
 const SearchNew = React.createClass({
 	getInitialState: function() {
@@ -85,10 +85,6 @@ const SearchNew = React.createClass({
 					value={this.state.searchText}
 					onUserInput={this.handleUserInput}
 					onUserKey={this.handleUserKeys}/>
-
-				{/*<FilterList 
-					searchText={this.state.searchText}
-					list={this.state.filterList}/>*/}
 
 				<List 
 					items={this.state.filterList}/>

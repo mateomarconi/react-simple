@@ -1,6 +1,5 @@
 const Input = React.createClass({
 	componentDidMount: function() {
-		console.log('Imput: componentDidMount')
 		if (this.props.focusOnMount)
 			this.refs.searchTextInput.focus()
 	},
