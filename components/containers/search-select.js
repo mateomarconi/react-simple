@@ -44,6 +44,7 @@ const SearchSelect = React.createClass({
 	},
 	select: function(selected) {
 		this.setState({ selected: selected, visible: false})
+		this.props.select(selected)
 	},
 	_init: function(list) {
 		const tmp = list.map( item => { 

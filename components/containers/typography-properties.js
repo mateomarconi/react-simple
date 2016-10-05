@@ -20,14 +20,14 @@ const fontsFamilys = [
 const TypographyProperties = React.createClass({
 	render: function() {
 		
-
 		return (
 			<div>
 				<Subtitle value={ this.props.typography.value }/>
 
 				<LabelSearchInput 
 					label="Family"
-					list={ fontsFamilys }/>
+					list={ fontsFamilys }
+					select={ this.props.updateFont }/>
 
 				<LabelNumber
 					label="Min size"
