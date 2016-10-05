@@ -87,7 +87,8 @@ const SearchNew = React.createClass({
 					onUserKey={this.handleUserKeys}/>
 
 				<List 
-					items={this.state.filterList}/>
+					items={this.state.filterList}
+				/>
 			</div>
 		)
 	}

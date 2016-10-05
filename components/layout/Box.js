@@ -5,8 +5,11 @@ const Box = React.createClass({
 		const styles = {}
 		const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
 
-		if (props.column)
+		console.log(props.column)
+		if (props.column && props.column == true){
+			console.log('entro')
 			styles.flexDirection = 'column'
+		}
 
 		if (props.fit){
 			styles.height = '100%'
