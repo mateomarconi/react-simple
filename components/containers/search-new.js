@@ -52,10 +52,10 @@ const SearchNew = React.createClass({
 	// CONTAINS??
 	filterList: function(searchText) {
 		return this.props.list.filter( item => {
-			if ( item.value.search(searchText) != -1 && searchText.length > 0 )
+			if ( item.value.toLowerCase().search(searchText.toLowerCase()) != -1 && searchText.length > 0 )
 				return true;
 		}).map( item => {
-			item.active = item.value == searchText ? true : false
+			item.active = item.value.toLowerCase() == searchText.toLowerCase() ? true : false
 			return item
 		})
 	},

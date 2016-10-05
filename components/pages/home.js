@@ -1,5 +1,5 @@
 const { CrudItemList, TypographyProperties, SetLayout } = window.Smart
-const { Container, Box } = window.Layout
+const { Container, Box, DisplayLayer } = window.Layout
 
 const HomePage = React.createClass({
 	getInitialState: function() {
@@ -20,7 +20,10 @@ const HomePage = React.createClass({
 				{id: 4, value: 'Montserrat-components'}
 			],
 			childTypographies: [],
-			selectedTypography: null
+			selectedTypography: null,
+			fontConfig: {
+				fontFamily: 'none'
+			}
 		}
 	},
 
@@ -67,6 +70,12 @@ const HomePage = React.createClass({
 	},
 
 
+	updateFont: function(value) {
+		console.log('updateFont')
+		this.setState({ 'fontConfig': {'fontFamily': value }})
+	},
+
+
 	render: function() {
 
 		const styles = {
@@ -107,14 +116,26 @@ const HomePage = React.createClass({
 				</Box>
 
 				<Box flex="1 1 auto" style={ styles.middleColumn }>
-					<h1>Middle</h1>
+					<DisplayLayer fontConfig={ this.state.fontConfig }>
+						<h1>Middle</h1>
+
+						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+						tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+						quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+						consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
+						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+					</DisplayLayer>
 				</Box>
 
 				<Box column flex="0 0 20%">
 					<h1>Right</h1>
 
 					{ this.state.selectedTypography && 
-						<TypographyProperties typography={this.state.selectedTypography}/>
+						<TypographyProperties 
+							typography={ this.state.selectedTypography }
+							updateFont={ this.updateFont }
+						/>
 					}
 				</Box>
 			</Box>
