@@ -1,4 +1,4 @@
-const { CrudItemList, TypographyProperties } = window.Smart
+const { CrudItemList, TypographyProperties, SetLayout } = window.Smart
 const { Container, Box } = window.Layout
 
 const HomePage = React.createClass({
@@ -45,8 +45,6 @@ const HomePage = React.createClass({
 	selectComponent: function(item) {
 		this.setState({ selectedComponent: item })
 	},
-
-
 	addTypography: function(typography) {
 		const tmp = {
 			id: this.state.typograhies.length + 1,
@@ -90,6 +88,10 @@ const HomePage = React.createClass({
 						addNewChild	={ this.addNewComponent }
 						updateChilds={ this.updateChilds }
 						select 		={ this.selectComponent }
+					/>
+
+					<SetLayout
+						title 		= "Layout"
 					/>
 
 					<CrudItemList 
