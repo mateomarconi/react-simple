@@ -73,11 +73,15 @@ const HomePage = React.createClass({
 	selectTypography: function(item) {
 		this.setState({ selectedTypography: item })
 	},
-
-
 	updateFont: function(value) {
 		console.log('updateFont')
 		this.setState({ 'fontConfig': {'fontFamily': value }})
+	},
+	changeDirection: function(value) {
+		this.setState({ 'layout': {'column': value==='row' ? false : true }})
+	},
+	changeWrap: function(value) {
+		this.setState({ 'layout': {'wrap': value==='wrap' ? false : true }})
 	},
 
 
@@ -105,7 +109,9 @@ const HomePage = React.createClass({
 					/>
 
 					<SetLayout
-						title 		= "Layout"
+						title 			= "Layout"
+						changeDirection ={ this.changeDirection }
+						changeWrap		={ this.changeWrap }
 					/>
 
 					<CrudItemList 
@@ -131,7 +137,7 @@ const HomePage = React.createClass({
 						cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
 						proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-						<Box { ...this.state.layout }>
+						<Box wrap { ...this.state.layout }>
 							<div className="test"></div>
 							<div className="test"></div>
 						</Box>

@@ -5,10 +5,12 @@ const Box = React.createClass({
 		const styles = {}
 		const flexProps = ['flex', 'flexGrow', 'flexShrink', 'flexBasis']
 
-		console.log(props.column)
 		if (props.column && props.column == true){
-			console.log('entro')
 			styles.flexDirection = 'column'
+		}
+
+		if (props.wrap && props.wrap == true){
+			styles.flexWrap = 'wrap-reverse'
 		}
 
 		if (props.fit){
